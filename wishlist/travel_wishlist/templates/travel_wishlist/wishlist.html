@@ -13,11 +13,13 @@
 
 <div>
     
-    <span class="place-name">{{ place.name }}</span>
+    <span class="place-name">
+        <a href="{% url 'place_detail' place.pk%}">{{ place.name }}</a>
+    </span>
 
     <form method="POST" class="visited-form" action="{% url 'place_was_visited' place.pk%}">
         {% csrf_token %}
-        <button >Visited!</button>
+        <button id="visited-button-{{place.pk}}" type="submit">Visited!</button>
     </form>
     
 </div>
