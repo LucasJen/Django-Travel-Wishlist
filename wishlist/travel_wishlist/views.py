@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Place
-from .forms import NewPlaceForm
+from .forms import NewPlaceForm, TripReviewForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
+from django.contrib import messages
 
 @login_required
 def place_list(request):
@@ -39,7 +40,29 @@ def place_was_visited(request, place_pk):
 @login_required
 def place_details(request, place_pk): # takes user request data and place_pk from urls.py as parameters
     place = get_object_or_404(Place, pk=place_pk) # assigns the model object at the pk position of place_pk
-    return render(request, 'travel_wishlist/place_detail.html', {'place': place}) # passes the place variable to be called in the template
+
+    if place.user != request.user: # verify that the place belongs to the user requesting it
+        return HttpResponseForbidden 
+    
+    if request.method == 'POST':
+        form  = TripReviewForm(request.POST, request.FILES, instance = place)
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Trip information updated')
+        else:
+            messages.error(request, form.errors) # can be refined later
+
+        return redirect('place_detail', place_pk=place_pk)
+    
+    else:
+        if place.visited:
+            review_form = TripReviewForm(instance=place)
+            return render(request, 'travel_wishlist/place_detail.html', {'place': place, 'review_form': review_form})
+        else:
+            return render(request, 'travel_wishlist/place_detail.html', {'place': place})
+
+
+
 
 @login_required
 def delete_place(request, place_pk):
@@ -49,6 +72,7 @@ def delete_place(request, place_pk):
         return redirect('place_list')
     else:
         return HttpResponseForbidden
+
 
 def about(request):
     author='Lucas'
