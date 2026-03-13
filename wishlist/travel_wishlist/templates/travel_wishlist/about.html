@@ -1,0 +1,25 @@
+<h2>About</h2>
+
+<div>
+
+    <p>{{ about }}</p>
+
+    <p>A website by {{ author }}</p> <!-- Can access variables created in the function in views.py-->
+
+    {% if author %} <!-- Django if block-->
+
+    <p>The author's name has been provided</p>
+    
+    {% else %} <!-- Django else statement -->
+
+    <p>The author's name has not been provided</p>
+
+    {% endif %} <!-- Closing syntax for if block -->
+
+    {% for letter in 'hello' %} <!-- for loop syntax-->
+
+    <p>{{ letter }}</p>
+
+    {% endfor %} <!-- Closing for loop -->
+
+</div>

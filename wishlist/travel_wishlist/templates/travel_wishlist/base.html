@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Travel Wishlist</title>
+        <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
+    </head>
+
+<h1> Where do you want to go? </h1>
+
+    <body>
+        {% block content %}
+        {% endblock %}
+    </body>
+
+    <div>
+        <p> A travel wishlist, built with Django</p>
+
+        <a href="{% url 'place_list' %}" class="nav-link">Your wishlist</a>
+        <a href="{% url 'places_visited' %}" class="nav-link">Places you've visited</a>
+        
+    </div>
+</html>
