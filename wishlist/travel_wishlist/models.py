@@ -2,7 +2,12 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.files.storage import default_storage
 
+"""
+Models create python templates to initiliaze and change databases.
+This model is used to store user specific information and the visited location details
+"""
 class Place(models.Model):
+    # default values can be provied as well as how to handle lack of input
     user = models.ForeignKey('auth.User', null=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     visited = models.BooleanField(default=False)

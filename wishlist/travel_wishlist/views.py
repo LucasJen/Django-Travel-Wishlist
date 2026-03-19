@@ -62,8 +62,6 @@ def place_details(request, place_pk): # takes user request data and place_pk fro
             return render(request, 'travel_wishlist/place_detail.html', {'place': place})
 
 
-
-
 @login_required
 def delete_place(request, place_pk):
     place = get_object_or_404(Place, pk=place_pk)
