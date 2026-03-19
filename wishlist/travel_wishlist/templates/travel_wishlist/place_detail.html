@@ -37,7 +37,7 @@
     </form>
 
 {% else %}
-    <p>You have not visited {{ place.name}}</p>
+    <p>You have not visited {{ place.name }}</p>
 
     <form action="{% url 'place_was_visited' place.pk %}" method="POST">
         {% csrf_token %}
