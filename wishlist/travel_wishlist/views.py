@@ -22,7 +22,7 @@ def place_list(request):
 
 @login_required
 def places_visited(request):
-    visited = Place.objects.filter(visited=True)
+    visited = Place.objects.filter(user=request.user, visited=True)
     return render(request, 'travel_wishlist/visited.html', {'visited': visited})
 
 @login_required

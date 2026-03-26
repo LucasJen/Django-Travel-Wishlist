@@ -1,34 +1,62 @@
 [
-  { 
+  {
     "model": "travel_wishlist.place",
     "pk": 1,
     "fields": {
+      "user": 1,
       "name": "Tokyo",
-      "visited": "False"
+      "visited": "True",
+      "notes": "cool",
+      "date_visited": "2014-01-01",
+      "photo": ""
     }
   },
-  { 
+  {
     "model": "travel_wishlist.place",
     "pk": 2,
     "fields": {
+      "user": 1,
       "name": "New York",
-      "visited": "False"
+      "visited": "False",
+      "notes": null,
+      "date_visited": null,
+      "photo": ""
     }
   },
-  { 
+  {
     "model": "travel_wishlist.place",
     "pk": 3,
     "fields": {
-      "name": "San Francisco", 
-      "visited": "True"
+      "user": 1,
+      "name": "San Francisco",
+      "visited": "True",
+      "notes": null,
+      "date_visited": null,
+      "photo": ""
     }
   },
-  { 
+  {
     "model": "travel_wishlist.place",
     "pk": 4,
     "fields": {
+      "user": 1,
       "name": "Moab",
-      "visited": "True"
+      "visited": "True",
+      "notes": null,
+      "date_visited": null,
+      "photo": ""
+    }
+  },
+  {
+    "model": "travel_wishlist.place",
+    "pk": 5,
+    "fields": {
+      "user": 2,
+      "name": "Sydney",
+      "visited": "False",
+      "notes": null,
+      "date_visited": null,
+      "photo": ""
     }
   }
 ]
