@@ -22,7 +22,7 @@ def place_list(request):
 
 @login_required
 def places_visited(request):
-    visited = Place.objects.filter(visited=True)
+    visited = Place.objects.filter(user=request.user, visited=True)
     return render(request, 'travel_wishlist/visited.html', {'visited': visited})
 
 @login_required
@@ -42,7 +42,7 @@ def place_details(request, place_pk): # takes user request data and place_pk fro
     place = get_object_or_404(Place, pk=place_pk) # assigns the model object at the pk position of place_pk
 
     if place.user != request.user: # verify that the place belongs to the user requesting it
-        return HttpResponseForbidden 
+        return HttpResponseForbidden()
     
     if request.method == 'POST':
         form  = TripReviewForm(request.POST, request.FILES, instance = place)
@@ -52,7 +52,7 @@ def place_details(request, place_pk): # takes user request data and place_pk fro
         else:
             messages.error(request, form.errors) # can be refined later
 
-        return redirect('place_detail', place_pk=place_pk)
+        return redirect('place_details', place_pk=place_pk)
     
     else:
         if place.visited:
@@ -69,7 +69,7 @@ def delete_place(request, place_pk):
         place.delete()
         return redirect('place_list')
     else:
-        return HttpResponseForbidden
+        return HttpResponseForbidden()
 
 
 def about(request):
