@@ -74,6 +74,7 @@ WSGI_APPLICATION = 'wishlist.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+# Default settings - will work at App engien GCP
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -84,6 +85,15 @@ DATABASES = {
         'PORT': '3306'
     }
 }
+
+# connect to the same database when this code is running on our computer
+# here, need to connect via the cloud proxy
+# test if we are running locally? modify database settings for local development.
+
+if not os.getenv('GAE_INSTANCE'):
+    # app is not running at GA, use local settings
+    DATABASES['default']['HOST'] = '127.0.0.1'
+
 
 
 # Password validation
