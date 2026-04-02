@@ -136,7 +136,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'www', 'static')
 # STATIC_URL = 'static/'
 
 GS_STATIC_FILE_BUCKET = 'wishlist-491919.appspot.com'
-STATIC_URL = f'https://storage.cloud.google.com/{GS_STATIC_FILE_BUCKET}/static'
+STATIC_URL = f'https://storage.googleapis.com/{GS_STATIC_FILE_BUCKET}/static/'
 
 MEDIA_URL = '/media/'
 
