@@ -1,0 +1,10 @@
+.gcloudignore
+.git
+.gitignore
+/setup.cfg
+cloud-sql-proxy.exe
+db.sqlite3
+media/user_images
+venv
+.idea
+.vscode
